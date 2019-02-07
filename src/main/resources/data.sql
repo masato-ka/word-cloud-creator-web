@@ -1,0 +1,5 @@
+INSERT INTO status_code (status_code) VALUES ('REGISTERED')
+INSERT INTO status_code (status_code) VALUES ('CREATING')
+INSERT INTO status_code (status_code) VALUES ('CREATED')
+INSERT INTO status_code (status_code) VALUES ('FAILED')
+INSERT INTO status_code (status_code) VALUES ('CANCEL')
