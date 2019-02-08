@@ -13,6 +13,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.is;
@@ -68,10 +71,31 @@ public class WordCloudServiceTest {
         WordCloudMetaData result = wordCloudService.registerMetaData(test);
     }
 
-
-
     @Test
-    public void createWordCloud() {
+    public void createWordCloudNormalTest() {
+        String url = "http://example.com";
+        WordCloudMetaData test = new WordCloudMetaData("REGISTER");
+        test.setUrl(url);
+
+        when(wordCloudMetaDataRepository.findById(1)).thenReturn(Optional.of(test));
+        String rawText = "test string.";
+        when(rawTextRepository.getRawText(url)).thenReturn(rawText);
+        Map<String, Long> data = new HashMap<>();
+        data.put("test",100L);
+        when(tokenizerHelper.getTokenize(rawText)).thenReturn(data);
+        BufferedImage bufferedImage = new BufferedImage(100,100, 1);
+        when(wordCloudCreateHelper.setWidth(100)).thenReturn(wordCloudCreateHelper);
+        when(wordCloudCreateHelper.setHeight(100)).thenReturn(wordCloudCreateHelper);
+        when(wordCloudCreateHelper.setDataSet(data)).thenReturn(wordCloudCreateHelper);
+        when(wordCloudCreateHelper.build()).thenReturn(bufferedImage);
+        when(wordCloudImageRepository.saveImage(bufferedImage)).thenReturn("gcs/image/path");
+
+        WordCloudMetaData result = wordCloudService
+                    .createWordCloud(1, 100, 100, "circle");
+
+        assertThat(result.getImagePath(), is("gcs/image/path"));
+        assertThat(result.getStatusCode().getStatusCode(), is("CREATED"));
+
     }
 
     @Test
