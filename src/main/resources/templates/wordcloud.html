@@ -1,0 +1,31 @@
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" layout:decorate="~{commons/layout}"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <meta charset=" utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Word cloud.</title>
+</head>
+<body class="bg-secondary">
+
+<div class="container" layout:fragment="content">
+  <div class="row">
+    <div class="col-sm-3 col-md-6 col-lg-6 mx-auto mt-5">
+      <h1 class="text-center">WordCloud</h1>
+      <h5 class="text-center">言葉は今日のあなたが覗く空</h5>
+
+      <img class="img-fluid mx-auto d-block" src="image/top-icon.png" th:if="${image == null}"/>
+      <img class="img-fluid mx-auto d-block" th:src="${'data:image/png;base64,' + image}" th:if="${image}"/>
+
+      <form class="form-signin mt-5" action="" th:action="@{/wordcloud}" method="post" name="login">
+            <input type="text" class="form-control" style="margin-bottom: 1rem" placeholder="Your blog site URL" name="url" />
+            <button class="btn btn-lg btn-primary btn-block" style="padding: 1rem" type="submit">CREATE</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

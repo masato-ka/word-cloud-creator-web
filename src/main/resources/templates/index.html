@@ -1,0 +1,36 @@
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" layout:decorate="~{commons/layout}"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <meta charset=" utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Word cloud.</title>
+</head>
+<body onload="document.login.username.focus();">
+
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center"> ログイン</h5>
+                    <form class="form-signin" action="" th:action="@{/login}" method="post" name="login">
+                        <input type="text" class="form-control" style="margin-bottom: 1rem" placeholder="ユーザID" name="username" />
+                        <input type="password" class="form-control" style="margin-bottom: 1rem" placeholder="パスワード" name="password" />
+                        <button class="btn btn-lg btn-primary btn-block" style="padding: 1rem" type="submit">ログイン</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-danger" role="alert" th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
+        <strong>ログインに失敗しました: </strong>ユーザが存在しないか、パスワードが間違っています。
+    </div>
+
+
+</div>
+</body>
+</html>
