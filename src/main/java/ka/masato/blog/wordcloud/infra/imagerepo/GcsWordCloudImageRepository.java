@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.awt.image.BufferedImage;
 
+
 @Repository
 public class GcsWordCloudImageRepository implements WordCloudImageRepository {
 

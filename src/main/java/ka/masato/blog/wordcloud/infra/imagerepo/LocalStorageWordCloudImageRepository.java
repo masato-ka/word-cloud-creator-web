@@ -4,6 +4,7 @@ import ka.masato.blog.wordcloud.domain.wordcloud.model.WordCloudMetaData;
 import ka.masato.blog.wordcloud.domain.wordcloud.repository.WordCloudImageRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import javax.imageio.ImageIO;
@@ -16,6 +17,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
 
+@Primary
 @Repository
 public class LocalStorageWordCloudImageRepository implements WordCloudImageRepository {
 
