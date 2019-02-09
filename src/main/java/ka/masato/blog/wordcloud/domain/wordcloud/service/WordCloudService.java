@@ -98,11 +98,11 @@ public class WordCloudService {
     }
 
     private String createImage(int width, int height, String url) {
-        String rawText = rawTextRepository.getRawText(url);
-        //TODO this code is spended sec order time.
-        Map<String, Long> dataSet = tokenizerHelper.getTokenize(rawText);
-        BufferedImage resultImage = wordCloudCreateHelper.setWidth(width).setHeight(height).setDataSet(dataSet).build();
-        return wordCloudImageRepository.saveImage(resultImage);
+        Optional<String> result = rawTextRepository.getRawText(url)
+                .map((rawText -> tokenizerHelper.getTokenize(rawText)))
+                .map(dataSet -> wordCloudCreateHelper.setWidth(width).setHeight(height).setDataSet(dataSet).build())
+                .map(resultImage -> wordCloudImageRepository.saveImage(resultImage));
+        return result.get();
     }
 
 }

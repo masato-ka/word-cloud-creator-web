@@ -6,6 +6,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
+
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class WordCloudApplication implements CommandLineRunner {
@@ -20,6 +27,17 @@ public class WordCloudApplication implements CommandLineRunner {
     @Bean
     public Tokenizer getTokenizer(){
         return new Tokenizer();
+    }
+
+    @Bean
+    public RestTemplate restTemplate(){
+        RestTemplate restTemplate = new RestTemplate();
+        List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
+        StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
+        stringHttpMessageConverter.setDefaultCharset(Charset.forName("UTF-8"));
+        messageConverters.add(stringHttpMessageConverter);
+        restTemplate.setMessageConverters(messageConverters);
+        return restTemplate;
     }
 
     @Override

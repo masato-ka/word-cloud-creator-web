@@ -78,11 +78,11 @@ public class WordCloudServiceTest {
         test.setUrl(url);
 
         when(wordCloudMetaDataRepository.findById(1)).thenReturn(Optional.of(test));
-        String rawText = "test string.";
+        Optional<String> rawText = Optional.ofNullable("test string.");
         when(rawTextRepository.getRawText(url)).thenReturn(rawText);
         Map<String, Long> data = new HashMap<>();
         data.put("test",100L);
-        when(tokenizerHelper.getTokenize(rawText)).thenReturn(data);
+        when(tokenizerHelper.getTokenize(rawText.get())).thenReturn(data);
         BufferedImage bufferedImage = new BufferedImage(100,100, 1);
         when(wordCloudCreateHelper.setWidth(100)).thenReturn(wordCloudCreateHelper);
         when(wordCloudCreateHelper.setHeight(100)).thenReturn(wordCloudCreateHelper);
