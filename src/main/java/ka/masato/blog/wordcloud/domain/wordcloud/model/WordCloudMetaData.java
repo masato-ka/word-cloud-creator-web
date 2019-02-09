@@ -16,7 +16,7 @@ public class WordCloudMetaData {
     private LocalDateTime atLastUpdate;
     private LocalDateTime atCreated;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="setting_id")
     private WordCloudSetting wordCloudSetting;
 
