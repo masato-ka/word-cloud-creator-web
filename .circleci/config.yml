@@ -46,7 +46,7 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run: mvnw test
+      - run: mvn test
 
 workflows:
   version: 2
