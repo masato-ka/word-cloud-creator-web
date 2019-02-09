@@ -48,6 +48,10 @@ jobs:
       # run tests!
       - run: mvn integration-test
 
+      - store_test_results:
+          path: target/surfire-reports
+
+
 workflows:
   version: 2
   test:
