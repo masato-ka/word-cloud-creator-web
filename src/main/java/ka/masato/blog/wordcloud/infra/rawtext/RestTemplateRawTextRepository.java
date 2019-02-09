@@ -1,7 +1,7 @@
-package ka.masato.blog.wordcloud.infra.rawTextRepository;
+package ka.masato.blog.wordcloud.infra.rawtext;
 
 import ka.masato.blog.wordcloud.domain.wordcloud.repository.RawTextRepository;
-import ka.masato.blog.wordcloud.infra.rawTextRepository.exception.MalformedTargetAddressException;
+import ka.masato.blog.wordcloud.infra.rawtext.exception.MalformedTargetAddressException;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 

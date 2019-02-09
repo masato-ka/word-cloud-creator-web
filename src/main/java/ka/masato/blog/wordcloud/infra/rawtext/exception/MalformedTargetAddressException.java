@@ -1,4 +1,4 @@
-package ka.masato.blog.wordcloud.infra.rawTextRepository.exception;
+package ka.masato.blog.wordcloud.infra.rawtext.exception;
 
 public class MalformedTargetAddressException extends RuntimeException{
 

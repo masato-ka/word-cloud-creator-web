@@ -1,26 +1,16 @@
-package ka.masato.blog.wordcloud.infra.rawTextRepository;
+package ka.masato.blog.wordcloud.infra.rawtext;
 
-import ka.masato.blog.wordcloud.WordCloudApplication;
-import ka.masato.blog.wordcloud.infra.rawTextRepository.exception.MalformedTargetAddressException;
+import ka.masato.blog.wordcloud.infra.rawtext.exception.MalformedTargetAddressException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.is;
