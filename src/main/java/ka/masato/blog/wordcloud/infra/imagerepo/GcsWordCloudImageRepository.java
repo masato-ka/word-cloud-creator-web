@@ -4,10 +4,7 @@ import com.google.appengine.tools.cloudstorage.*;
 import com.google.auth.appengine.AppEngineCredentials;
 import com.google.auth.oauth2.GoogleCredentials;
 
-import com.google.cloud.storage.Acl;
-import com.google.cloud.storage.BlobInfo;
-import com.google.cloud.storage.Storage;
-import com.google.cloud.storage.StorageOptions;
+import com.google.cloud.storage.*;
 import ka.masato.blog.wordcloud.domain.wordcloud.model.WordCloudMetaData;
 import ka.masato.blog.wordcloud.domain.wordcloud.repository.WordCloudImageRepository;
 import ka.masato.blog.wordcloud.infra.imagerepo.exceptions.FailedPersistImageException;
@@ -49,17 +46,8 @@ public class GcsWordCloudImageRepository implements WordCloudImageRepository {
                 .setAcl(new ArrayList<>(Arrays.asList(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER))))
                 .build();
         InputStream is = getInputStream(image).get();
-        storage.create(blobInfo, is);
+        blobInfo = storage.create(blobInfo, is);
         return blobInfo.getMediaLink();
-    }
-
-
-    private GcsFilename getGcsFilename() {
-
-        String fileName = RandomStringUtils.randomAlphanumeric(20);
-        GcsFilename gcsFileName = new GcsFilename(BUCKET_NAME, fileName + ".png");
-        return gcsFileName;
-
     }
 
     private Optional<InputStream> getInputStream(BufferedImage image) {

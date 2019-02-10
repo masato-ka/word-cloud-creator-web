@@ -43,8 +43,15 @@ public class WordCloudController {
         wordCloudMetaData = wordCloudService.registerMetaData(wordCloudMetaData);
         wordCloudMetaData = wordCloudService.createWordCloud(wordCloudMetaData.getWordCloudId(),400,400,"circle");
 
-        Optional<String> image = imageFileLoadHelper.getImageWithFilePath(wordCloudMetaData.getImagePath()).base64encode();
-        image.map(i -> model.addAttribute("image", i));
+
+        String imagePath = wordCloudMetaData.getImagePath();
+
+        if (imagePath.startsWith("http")) {
+            model.addAttribute("image", imagePath);
+        }else {
+            Optional<String> image = imageFileLoadHelper.getImageWithFilePath(wordCloudMetaData.getImagePath()).base64encode();
+            image.map(i -> model.addAttribute("image", "data:image/png;base64," + i));
+        }
 
         return "wordcloud";
     }

@@ -18,7 +18,7 @@
       <h5 class="text-center">言葉は今日のあなたが覗く空</h5>
 
       <img class="img-fluid mx-auto d-block" src="image/top-icon.png" th:if="${image == null}"/>
-      <img class="img-fluid mx-auto d-block" th:src="${'data:image/png;base64,' + image}" th:if="${image}"/>
+      <img class="img-fluid mx-auto d-block" th:src="${image}" th:if="${image}"/>
 
       <form class="form-signin mt-5" action="" th:action="@{/wordcloud}" method="post" name="login">
             <input type="text" class="form-control" style="margin-bottom: 1rem" placeholder="Your blog site URL" name="url" />
