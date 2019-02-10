@@ -39,8 +39,6 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run: echo $GCLOUD_SERVICE_KEY | base64 -d > /home/circleci/repo/credential.json
-      - run: export GOOGLE_APPLICATION_CREDENTIALS="/home/circleci/repo/credential.json"
-      - run: ls
       - run: mvn dependency:go-offline
 
       - save_cache:
