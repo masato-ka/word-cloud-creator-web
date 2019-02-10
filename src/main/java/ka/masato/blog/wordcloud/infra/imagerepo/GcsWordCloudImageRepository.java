@@ -34,6 +34,7 @@ public class GcsWordCloudImageRepository implements WordCloudImageRepository {
     private final String BUCKET_NAME;
 
     private Storage storage;
+    private final String FILE_PROPERTY = "png";
 
     public GcsWordCloudImageRepository(@Value("${storage.gcs.backet:kataricloud}") String bucketName,
                                        @Value("${storage.gcs.buffer.size:1024}")int buffer_size) {
@@ -44,7 +45,7 @@ public class GcsWordCloudImageRepository implements WordCloudImageRepository {
     @Override
     public String saveImage(BufferedImage image) {
         BlobInfo blobInfo = BlobInfo
-                .newBuilder(BUCKET_NAME, RandomStringUtils.randomAlphanumeric(20))
+                .newBuilder(BUCKET_NAME, RandomStringUtils.randomAlphanumeric(20)+"."+ FILE_PROPERTY)
                 .setAcl(new ArrayList<>(Arrays.asList(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER))))
                 .build();
         InputStream is = getInputStream(image).get();
@@ -56,7 +57,7 @@ public class GcsWordCloudImageRepository implements WordCloudImageRepository {
     private GcsFilename getGcsFilename() {
 
         String fileName = RandomStringUtils.randomAlphanumeric(20);
-        GcsFilename gcsFileName = new GcsFilename(BUCKET_NAME, fileName+".png");
+        GcsFilename gcsFileName = new GcsFilename(BUCKET_NAME, fileName + ".png");
         return gcsFileName;
 
     }

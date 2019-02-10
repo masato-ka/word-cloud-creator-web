@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(properties = "storage.gcs.backet=test-kataricloud")
 public class GcsWordCloudImageRepositoryTest {
 
     @Autowired
