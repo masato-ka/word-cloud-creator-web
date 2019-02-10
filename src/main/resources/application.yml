@@ -1,0 +1,10 @@
+
+server:
+  max-http-header-size: 1024
+
+spring:
+  profiles:
+    active: appengine
+
+
+

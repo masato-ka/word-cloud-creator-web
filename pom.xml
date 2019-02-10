@@ -2,6 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.google.cloud</groupId>
+                <artifactId>google-cloud-bom</artifactId>
+                <version>0.80.0-alpha</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -12,6 +23,7 @@
     <artifactId>word-cloud</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>word-cloud</name>
+    <packaging>war</packaging>
     <description>This project backend of making word cloud.</description>
 
     <properties>
@@ -55,6 +67,39 @@
             <groupId>com.kennycason</groupId>
             <artifactId>kumo-core</artifactId>
             <version>1.17</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-storage</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.appengine.tools</groupId>
+            <artifactId>appengine-gcs-client</artifactId>
+            <version>0.6</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-storage</artifactId>
+            <version>1.62.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.auth</groupId>
+            <artifactId>google-auth-library-appengine</artifactId>
+            <version>0.13.0</version>
+        </dependency>
+        <!--test dependnency-->
+        <dependency>
+            <groupId>com.google.appengine</groupId>
+            <artifactId>appengine-testing</artifactId>
+            <version>1.9.71</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.appengine</groupId>
+            <artifactId>appengine-api-stubs</artifactId>
+            <version>1.9.71</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

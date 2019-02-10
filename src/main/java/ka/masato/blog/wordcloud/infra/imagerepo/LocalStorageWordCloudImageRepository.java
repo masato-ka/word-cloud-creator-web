@@ -5,6 +5,7 @@ import ka.masato.blog.wordcloud.domain.wordcloud.repository.WordCloudImageReposi
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import javax.imageio.ImageIO;
@@ -18,6 +19,7 @@ import java.nio.file.Paths;
 import java.util.Random;
 
 @Primary
+@Profile("default")
 @Repository
 public class LocalStorageWordCloudImageRepository implements WordCloudImageRepository {
 
