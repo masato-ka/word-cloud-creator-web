@@ -50,7 +50,7 @@ jobs:
       - run: mvn integration-test
 
       - store_test_results:
-          path: target/surfire-reports
+          path: target/surefire-reports
 
 
 workflows:
