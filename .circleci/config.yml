@@ -38,7 +38,7 @@ jobs:
             - v1-dependencies-{{ checksum "pom.xml" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-      - run: echo $GCLOUD_SERVICE_KEY | base64 -D > credential.json && export GOOGLE_APPLICATION_CREDENTIALS="~/repo/credential.json"
+      - run: echo $GCLOUD_SERVICE_KEY | base64 -d > credential.json && export GOOGLE_APPLICATION_CREDENTIALS="~/repo/credential.json"
       - run: mvn dependency:go-offline
 
       - save_cache:
