@@ -79,7 +79,7 @@ jobs:
           name: Deploy
           command: |
             gcloud auth activate-service-account --key-file "$HOME/kataricloud/credential.json"
-            mvn appengine:deploy -DskipTests=true
+            ./mvnw appengine:deploy -DskipTests=true
 
 
 workflows:
