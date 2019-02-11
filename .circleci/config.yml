@@ -11,6 +11,11 @@ executors:
     docker:
       - image: circleci/openjdk:8-jdk
     working_directory: ~/repo
+  appengine:
+    docker:
+      - image: google/cloud-sdk:alpine
+    working_directory: ~/kataricloud
+
 
 jobs:
   checkout_code:
@@ -35,9 +40,14 @@ jobs:
       - restore_cache:
           keys:
             - v1-repository-{{ .Environment.CIRCLE_SHA1 }}
-            - v1-dependencies-{{ checksum "pom.xml" }}
             # fallback to using the latest cache if no exact match is found
+            - v1-repository-
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
             - v1-dependencies-
+
       - run: echo $GCLOUD_SERVICE_KEY | base64 -d > /home/circleci/repo/credential.json
       - run: mvn dependency:go-offline
 
@@ -52,6 +62,35 @@ jobs:
       - store_test_results:
           path: target/surefire-reports
 
+  build_and_deploy:
+    executor: default
+    environment:
+      MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - run:
+          name: install tool
+          command: |
+            apk --update add openjdk8
+            gcloud components install app-engine-java
+
+      - restore_cache:
+          keys:
+            - v1-repository-{{ .Environment.CIRCLE_SHA1 }}
+            - v1-repository-
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            - v1-dependendies-
+
+      - run: echo $GCLOUD_SERVICE_KEY | base64 -d > /home/circleci/kataricloud/credential.json
+
+      - deploy:
+          name: Deploy
+          command: |
+            gcloud auth activate-service-account --key-file "$HOME/credential.json"
+            mvn appengine:deploy -DskipTests=true
+
 
 workflows:
   version: 2
@@ -61,5 +100,13 @@ workflows:
       - build_and_test:
           requires:
             - checkout_code
+      - build_and_deploy:
+          requires:
+            - checkout_code
+            - build_and_test
+          filters:
+            branches:
+              only: app-engine
+
 
 
