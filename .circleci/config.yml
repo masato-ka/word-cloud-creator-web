@@ -73,18 +73,8 @@ jobs:
           command: |
             apk --update add openjdk8
             gcloud components install app-engine-java
-
-      - restore_cache:
-          keys:
-            - v1-repository-{{ .Environment.CIRCLE_SHA1 }}
-            - v1-repository-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "pom.xml" }}
-            - v1-dependendies-
-
-      - run: echo $GCLOUD_SERVICE_KEY | base64 -d > /home/circleci/kataricloud/credential.json
-
+      - checkout
+      - run: echo $GCLOUD_SERVICE_KEY | base64 -d > /root/kataricloud/credential.json
       - deploy:
           name: Deploy
           command: |
