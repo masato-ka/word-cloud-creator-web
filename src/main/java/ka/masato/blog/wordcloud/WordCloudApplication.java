@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
-public class WordCloudApplication implements CommandLineRunner {
+public class WordCloudApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(WordCloudApplication.class, args);
@@ -40,10 +40,5 @@ public class WordCloudApplication implements CommandLineRunner {
         return restTemplate;
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-
-
-    }
 }
 

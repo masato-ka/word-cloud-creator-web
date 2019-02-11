@@ -25,7 +25,7 @@ public class WordCloudController {
         this.imageFileLoadHelper = imageFileLoadHelper;
     }
 
-    @GetMapping("wordcloud")
+    @GetMapping({"/", "/wordcloud"})
     public String getWordCloud(Model model){
         WordCloudModel wordCloudModel = new WordCloudModel();
         model.addAttribute("wordCloudData", wordCloudModel);
@@ -33,7 +33,7 @@ public class WordCloudController {
         return "wordcloud";
     }
 
-    @PostMapping("wordcloud")
+    @PostMapping("/wordcloud")
     public String postWordCloud(@ModelAttribute WordCloudForm wordCloudForm, Model model){
 
         String url = wordCloudForm.getUrl();
