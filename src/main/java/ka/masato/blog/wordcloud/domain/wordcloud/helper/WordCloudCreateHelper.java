@@ -43,7 +43,7 @@ public class WordCloudCreateHelper {
             is = resource.getInputStream();
             this.kumoFont = new KumoFont(is);
         } catch (IOException e) {
-            logger.warn("Failed loading embeded font.");
+            logger.warn("Failed loading embeded font :" + e.getMessage());
         }
     }
 
