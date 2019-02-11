@@ -4,12 +4,19 @@ import com.kennycason.kumo.CollisionMode;
 import com.kennycason.kumo.WordCloud;
 import com.kennycason.kumo.WordFrequency;
 import com.kennycason.kumo.bg.CircleBackground;
+import com.kennycason.kumo.font.KumoFont;
 import com.kennycason.kumo.font.scale.LinearFontScalar;
 import com.kennycason.kumo.palette.LinearGradientColorPalette;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -17,9 +24,28 @@ import java.util.stream.Collectors;
 @Component
 public class WordCloudCreateHelper {
 
+
+    private static final Logger logger = LoggerFactory.getLogger(WordCloudCreateHelper.class);
     private int width = 640;
     private int height = 420;
     private List<WordFrequency> wordFrequencies;
+    private KumoFont kumoFont;
+    private ResourceLoader resourceLoader;
+
+
+    public WordCloudCreateHelper(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+        Resource resource = this
+                .resourceLoader
+                .getResource("classpath:" + "font/migmix-1p-20150712/migmix-1p-bold.ttf");
+        InputStream is = null;
+        try {
+            is = resource.getInputStream();
+            this.kumoFont = new KumoFont(is);
+        } catch (IOException e) {
+            logger.warn("Failed loading embeded font.");
+        }
+    }
 
 
     public WordCloudCreateHelper setHeight(int height) {
@@ -48,6 +74,7 @@ public class WordCloudCreateHelper {
 
         final Dimension dimension = new Dimension(this.width, this.height);
         final WordCloud wordCloud = new WordCloud(dimension, CollisionMode.PIXEL_PERFECT);
+        wordCloud.setKumoFont(kumoFont);
         wordCloud.setPadding(2);
         wordCloud.setBackground(new CircleBackground(200));
         wordCloud.setBackgroundColor(Color.white);
@@ -57,5 +84,6 @@ public class WordCloudCreateHelper {
         wordCloud.build(this.wordFrequencies);
         return wordCloud.getBufferedImage();
     }
+
 
 }
