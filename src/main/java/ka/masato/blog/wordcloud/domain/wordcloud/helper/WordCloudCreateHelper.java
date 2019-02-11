@@ -40,9 +40,11 @@ public class WordCloudCreateHelper {
                 .getResource("classpath:" + "font/migmix-1p-20150712/migmix-1p-bold.ttf");
         InputStream is = null;
         try {
+            logger.info("Start load embeded font.");
             is = resource.getInputStream();
             this.kumoFont = new KumoFont(is);
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             logger.warn("Failed loading embeded font :" + e.getMessage());
         }
     }
