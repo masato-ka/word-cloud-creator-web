@@ -45,12 +45,7 @@ public class WordCloudCreateHelper {
             is = resource.getInputStream();
             logger.info("resource info:" + resource.toString());
             logger.info("Get InputStream:" + is.toString());
-            byte[] buffer = new byte[1024];
-            int length = is.read(buffer);
-            while (length != -1) {
-                length = is.read(buffer);
-            }
-            //this.kumoFont = new KumoFont(is);
+            this.kumoFont = new KumoFont(is);
             is.close();
         } catch (KumoException | IOException e) {
             System.out.println(e.getMessage());
