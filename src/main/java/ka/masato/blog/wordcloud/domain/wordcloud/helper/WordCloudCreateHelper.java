@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +43,8 @@ public class WordCloudCreateHelper {
             logger.info("Start load embeded font.");
             //resource.getFile();
             logger.info("resource info:" + resource.toString());
-            this.kumoFont = new KumoFont(resource.getFile());
+            File fontFile = resource.getFile();
+            this.kumoFont = new KumoFont(fontFile);
             //this.kumoFont = new KumoFont(is);
         } catch (KumoException | IOException e) {
             System.out.println(e.getMessage());
