@@ -38,7 +38,7 @@ public class WordCloudCreateHelper {
         this.resourceLoader = resourceLoader;
         Resource resource = this
                 .resourceLoader
-                .getResource("classpath:" + "static/font/migmix-1p-20150712/migmix-1p-bold.ttf");
+                .getResource("classpath:" + "static/font/ipam00303/ipam.ttf");
         InputStream is = null;
         try {
             logger.info("Start load embeded font.");
@@ -48,6 +48,7 @@ public class WordCloudCreateHelper {
             //File fontFile = resource.getFile();
             // this.kumoFont = new KumoFont(fontFile);
             this.kumoFont = new KumoFont(is);
+
         } catch (KumoException | IOException e) {
             System.out.println(e.getMessage());
             logger.warn("Failed loading embeded font :" + e.getMessage());
