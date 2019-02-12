@@ -50,7 +50,7 @@ public class WordCloudCreateHelper {
             while (length != -1) {
                 length = is.read(buffer);
             }
-            this.kumoFont = new KumoFont(is);
+            //this.kumoFont = new KumoFont(is);
             is.close();
         } catch (KumoException | IOException e) {
             System.out.println(e.getMessage());
