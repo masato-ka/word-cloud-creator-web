@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -39,13 +39,15 @@ public class WordCloudCreateHelper {
         Resource resource = this
                 .resourceLoader
                 .getResource("classpath:" + "static/font/migmix-1p-20150712/migmix-1p-bold.ttf");
+        InputStream is = null;
         try {
             logger.info("Start load embeded font.");
             //resource.getFile();
+            is = resource.getInputStream();
             logger.info("resource info:" + resource.toString());
-            File fontFile = resource.getFile();
-            this.kumoFont = new KumoFont(fontFile);
-            //this.kumoFont = new KumoFont(is);
+            //File fontFile = resource.getFile();
+            // this.kumoFont = new KumoFont(fontFile);
+            this.kumoFont = new KumoFont(is);
         } catch (KumoException | IOException e) {
             System.out.println(e.getMessage());
             logger.warn("Failed loading embeded font :" + e.getMessage());
