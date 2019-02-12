@@ -42,6 +42,8 @@ public class WordCloudCreateHelper {
         try {
             logger.info("Start load embeded font.");
             is = resource.getInputStream();
+            logger.info("resource info:" + resource.toString());
+            logger.info("Get InputStream:" + is.toString());
             this.kumoFont = new KumoFont(is);
         } catch (IOException e) {
             System.out.println(e.getMessage());
