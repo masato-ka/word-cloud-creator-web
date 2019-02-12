@@ -37,13 +37,14 @@ public class WordCloudCreateHelper {
         this.resourceLoader = resourceLoader;
         Resource resource = this
                 .resourceLoader
-                .getResource("classpath:" + "font/migmix-1p-20150712/migmix-1p-bold.ttf");
+                .getResource("classpath:" + "static/font/migmix-1p-20150712/migmix-1p-bold.ttf");
         InputStream is = null;
         try {
             logger.info("Start load embeded font.");
             is = resource.getInputStream();
             logger.info("resource info:" + resource.toString());
             logger.info("Get InputStream:" + is.toString());
+
             this.kumoFont = new KumoFont(is);
         } catch (IOException e) {
             System.out.println(e.getMessage());
