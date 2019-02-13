@@ -5,6 +5,7 @@ import com.kennycason.kumo.WordCloud;
 import com.kennycason.kumo.WordFrequency;
 import com.kennycason.kumo.bg.CircleBackground;
 import com.kennycason.kumo.exception.KumoException;
+import com.kennycason.kumo.font.FontWeight;
 import com.kennycason.kumo.font.KumoFont;
 import com.kennycason.kumo.font.scale.LinearFontScalar;
 import com.kennycason.kumo.palette.LinearGradientColorPalette;
@@ -43,9 +44,10 @@ public class WordCloudCreateHelper {
         try {
             logger.info("Start load embeded font.");
             is = resource.getInputStream();
+            is.close();
             logger.info("resource info:" + resource.toString());
-            this.kumoFont = new KumoFont(is);
-
+            //this.kumoFont = new KumoFont(is);
+            this.kumoFont = new KumoFont(Font.SANS_SERIF, FontWeight.BOLD);
         } catch (KumoException | IOException e) {
             System.out.println(e.getMessage());
             logger.warn("Failed loading embeded font :" + e.getMessage());
