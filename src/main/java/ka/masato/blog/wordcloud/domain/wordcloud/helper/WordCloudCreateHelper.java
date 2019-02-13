@@ -38,26 +38,12 @@ public class WordCloudCreateHelper {
         this.resourceLoader = resourceLoader;
         Resource resource = this
                 .resourceLoader
-                .getResource("classpath:" + "static/font/ipam00303/ipam.ttf");
-        Resource sample = this.resourceLoader.getResource("classpath:" + "static/font/ipam00303/Readme_ipam00303.txt");
+                .getResource("classpath:" + "static/font/NotoSansJP-Bold.otf");
         InputStream is = null;
         try {
             logger.info("Start load embeded font.");
-            //resource.getFile();
-            InputStream tempInputResource = sample.getInputStream();
-            byte[] buffer = new byte[1024];
-            int readSize = tempInputResource.read(buffer);
-            String result = null;
-            while (readSize != -1) {
-                readSize = tempInputResource.read(buffer);
-                result += new String(buffer);
-            }
-            logger.info(result);
-
             is = resource.getInputStream();
             logger.info("resource info:" + resource.toString());
-            //File fontFile = resource.getFile();
-            // this.kumoFont = new KumoFont(fontFile);
             this.kumoFont = new KumoFont(is);
 
         } catch (KumoException | IOException e) {
