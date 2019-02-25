@@ -5,8 +5,9 @@
     <resource-files>
         <include path="/**.ttf"/>
     </resource-files>
-    <env-variables>
-        <env-var name="sun.awt.fontconfig"
-                 value="/base/alloc/tmpfs/dynamic_runtimes/java_jre/85552bd4bf80a1c1/lib/fontconfig.Prodimage.properties"/>
-    </env-variables>
+    <system-properties>
+        <property name="sun.awt.fontconfig"
+                  value="/base/alloc/tmpfs/dynamic_runtimes/java_jre/85552bd4bf80a1c1/lib/fontconfig.Prodimage.properties"/>
+    </system-properties>
+
 </appengine-web-app>
