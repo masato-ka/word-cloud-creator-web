@@ -50,6 +50,7 @@ public class WordCloudApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Properties hoge = System.getProperties();
         hoge.keySet().stream().forEach(System.out::println);
+        logger.info("USER.DIR:" + hoge.getProperty("user.dir"));
         //        String fontConfig = System.getProperty("java.home")
 //                + File.separator + "lib"
 //                + File.separator + "fontconfig.Prodimage.properties";
