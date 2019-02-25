@@ -64,7 +64,8 @@ public class WordCloudApplication implements CommandLineRunner {
         logger.info(fontConfig);
         if (new File(fontConfig).exists())
             System.setProperty("sun.awt.fontconfig", fontConfig);
-        Files.lines(Paths.get(fontConfig), StandardCharsets.UTF_8).forEach(System.out::println);
+            Files.lines(Paths.get(fontConfig), StandardCharsets.UTF_8)
+                    .forEach(System.out::println);
     }
 }
 
