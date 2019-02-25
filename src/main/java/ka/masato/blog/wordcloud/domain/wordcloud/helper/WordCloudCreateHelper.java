@@ -42,12 +42,14 @@ public class WordCloudCreateHelper {
                 .getResource("classpath:" + "static/font/NotoSansJP-Bold.otf");
         InputStream is = null;
         try {
+
             logger.info("Start load embeded font.");
             is = resource.getInputStream();
             is.close();
             logger.info("resource info:" + resource.toString());
             //this.kumoFont = new KumoFont(is);
             this.kumoFont = new KumoFont(Font.SANS_SERIF, FontWeight.BOLD);
+
         } catch (KumoException | IOException e) {
             System.out.println(e.getMessage());
             logger.warn("Failed loading embeded font :" + e.getMessage());

@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
-  <threadsafe>true</threadsafe>
-  <runtime>java8</runtime>
+    <version>new-version</version>
+    <threadsafe>true</threadsafe>
+    <runtime>java8</runtime>
     <resource-files>
         <include path="/**.ttf"/>
     </resource-files>
+    <system-properties>
+        <property name="user.language" value="ja"/>
+        <property name="user.country" value="JP" />
+        <!--<property name="sun.awt.fontconfig"
+                  value="/base/alloc/tmpfs/dynamic_runtimes/java_jre/85552bd4bf80a1c1/lib/fontconfig.Prodimage.properties"/>-->
+    </system-properties>
 
 </appengine-web-app>
