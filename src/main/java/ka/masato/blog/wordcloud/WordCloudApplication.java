@@ -12,6 +12,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.File;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,8 @@ public class WordCloudApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        String cd = new File(".").getAbsoluteFile().getParent();
+        logger.info(cd);
 //        String fontConfig = System.getProperty("java.home")
 //                + File.separator + "lib"
 //                + File.separator + "fontconfig.Prodimage.properties";
