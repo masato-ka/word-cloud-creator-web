@@ -13,10 +13,12 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.File;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 @SpringBootApplication
 public class WordCloudApplication implements CommandLineRunner {
@@ -56,7 +58,13 @@ public class WordCloudApplication implements CommandLineRunner {
         Locale.setDefault(Locale.JAPANESE);
         logger.info(Locale.getDefault().getLanguage());
         logger.info(Locale.getDefault().getDisplayLanguage());
+        Map<String, String> env = System.getenv();
 
+        logger.info(env.get("JRE_LIB_FONTS") + "/" + "kochi-gothic-subst.ttf");
+        File font = new File(env.get("JRE_LIB_FONTS") + "/" + "kochi-gothic-subst.ttf");
+        if (font.exists()) {
+            logger.info("Exist!");
+        }else{logger.info("No!");}
     //        Properties hoge = System.getProperties();
 //        hoge.keySet().stream().forEach(System.out::println);
 //        logger.info("USER.DIR:" + hoge.getProperty("user.dir"));
