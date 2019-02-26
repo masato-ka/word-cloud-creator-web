@@ -15,10 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 @SpringBootApplication
 public class WordCloudApplication implements CommandLineRunner {
@@ -59,6 +56,12 @@ public class WordCloudApplication implements CommandLineRunner {
         logger.info(Locale.getDefault().getLanguage());
         logger.info(Locale.getDefault().getDisplayLanguage());
         Map<String, String> env = System.getenv();
+        String fontPath = System.getProperty("java.home")
+                + File.pathSeparator + "lib"
+                + File.pathSeparator + "fonts";
+        if(new File(fontPath).exists()){
+            Arrays.stream(new File(fontPath).list()).forEach(System.out::println);
+        }
         logger.info(env.get("JRE_LIB_FONTS") + "/" + "kochi-gothic-subst.ttf");
         File font = new File(env.get("JRE_LIB_FONTS") + "/" + "kochi-gothic-subst.ttf");
         if (font.exists()) {
