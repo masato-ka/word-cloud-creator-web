@@ -59,12 +59,12 @@ public class WordCloudApplication implements CommandLineRunner {
         logger.info(Locale.getDefault().getLanguage());
         logger.info(Locale.getDefault().getDisplayLanguage());
         Map<String, String> env = System.getenv();
-
         logger.info(env.get("JRE_LIB_FONTS") + "/" + "kochi-gothic-subst.ttf");
         File font = new File(env.get("JRE_LIB_FONTS") + "/" + "kochi-gothic-subst.ttf");
         if (font.exists()) {
             logger.info("Exist!");
         }else{logger.info("No!");}
+        System.getenv().entrySet().stream().forEach(System.out::println);
     //        Properties hoge = System.getProperties();
 //        hoge.keySet().stream().forEach(System.out::println);
 //        logger.info("USER.DIR:" + hoge.getProperty("user.dir"));
