@@ -53,10 +53,10 @@ public class WordCloudApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         logger.info(Locale.getDefault().getLanguage());
         logger.info(Locale.getDefault().getDisplayLanguage());
-        System.setProperty("user.language", "ja");
-        System.setProperty("user.country", "JP");
+        Locale.setDefault(Locale.JAPANESE);
         logger.info(Locale.getDefault().getLanguage());
         logger.info(Locale.getDefault().getDisplayLanguage());
+
     //        Properties hoge = System.getProperties();
 //        hoge.keySet().stream().forEach(System.out::println);
 //        logger.info("USER.DIR:" + hoge.getProperty("user.dir"));
