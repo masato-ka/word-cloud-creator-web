@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -15,7 +16,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.nio.charset.Charset;
-import java.util.*;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class WordCloudApplication implements CommandLineRunner {
@@ -50,39 +53,44 @@ public class WordCloudApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        logger.info(Locale.getDefault().getLanguage());
-        logger.info(Locale.getDefault().getDisplayLanguage());
-        Locale.setDefault(Locale.JAPANESE);
-        logger.info(Locale.getDefault().getLanguage());
-        logger.info(Locale.getDefault().getDisplayLanguage());
-        Map<String, String> env = System.getenv();
-        String fontPath = System.getProperty("java.home")
-                + File.pathSeparator + "lib"
-                + File.pathSeparator + "fonts";
-        if(new File(fontPath).exists()){
-            Arrays.stream(new File(fontPath).list()).forEach(System.out::println);
-        }
-        logger.info(env.get("JRE_LIB_FONTS") + "/" + "kochi-gothic-subst.ttf");
-        File font = new File(env.get("JRE_LIB_FONTS") + "/" + "kochi-gothic-subst.ttf");
-        if (font.exists()) {
-            logger.info("Exist!");
-        }else{logger.info("No!");}
-        System.getenv().entrySet().stream().forEach(System.out::println);
-    //        Properties hoge = System.getProperties();
+//        logger.info(Locale.getDefault().getLanguage());
+//        logger.info(Locale.getDefault().getDisplayLanguage());
+//        Locale.setDefault(Locale.JAPANESE);
+//        logger.info(Locale.getDefault().getLanguage());
+//        logger.info(Locale.getDefault().getDisplayLanguage());
+//        Map<String, String> env = System.getenv();
+//        String fontPath = System.getProperty("java.home")
+//                + File.pathSeparator + "lib"
+//                + File.pathSeparator + "fonts";
+//        if(new File(fontPath).exists()){
+//            Arrays.stream(new File(fontPath).list()).forEach(System.out::println);
+//        }
+//        logger.info(env.get("JRE_LIB_FONTS") + "/" + "kochi-gothic-subst.ttf");
+//        File font = new File(env.get("JRE_LIB_FONTS") + "/" + "kochi-gothic-subst.ttf");
+//        if (font.exists()) {
+//            logger.info("Exist!");
+//        }else{logger.info("No!");}
+//        System.getenv().entrySet().stream().forEach(System.out::println);
+        Resource resource = resourceLoader.getResource("classpath:"+"static/font/fontconfig.properties.template");
+        File f = new File("/tmp/fontconfig.properties");
+        Files.copy(resource.getInputStream(), f.toPath());
+
+        //        Properties hoge = System.getProperties();
 //        hoge.keySet().stream().forEach(System.out::println);
 //        logger.info("USER.DIR:" + hoge.getProperty("user.dir"));
 //        String fontConfig = System.getProperty("java.home")
 //                + File.separator + "lib"
 //                + File.separator + "fontconfig.Prodimage.properties";
-//        logger.info(fontConfig);
-//        if (new File(fontConfig).exists()){
-//            System.setProperty("sun.awt.fontconfig", fontConfig);
+        String fontConfig = "/tmp" + File.separator + "fontconfig.properties";
+        logger.info(fontConfig);
+        if (new File(fontConfig).exists()){
+            System.setProperty("sun.awt.fontconfig", fontConfig);
 //            Files.lines(Paths.get(fontConfig), StandardCharsets.UTF_8)
 //                    .forEach(System.out::println);
-//
-//        }
-//
+        } else {
+            logger.warn("can not find fontconfig.");
 
+        }
     }
 }
 
