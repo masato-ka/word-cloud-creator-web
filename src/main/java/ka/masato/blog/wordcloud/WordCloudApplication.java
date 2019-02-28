@@ -54,9 +54,9 @@ public class WordCloudApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        String fontPropertiesFilePath = "/tmp"+File.pathSeparator+"fontconfig.properties";
-        String fontFilePath = "/tmp" + File.pathSeparator + "NotoSansJP-Regular.otf";
-        String fontBoldFilePath = "/tmp"+File.pathSeparator+"NotoSansJP-Bold.otf";
+        String fontPropertiesFilePath = "/tmp/fontconfig.properties";
+        String fontFilePath = "/tmp/NotoSansJP-Regular.otf";
+        String fontBoldFilePath = "/tmp/NotoSansJP-Bold.otf";
 
         String fontFileResourcePath = "static/font/NotoSansJP-Regular.otf";
         String fontBoldFileResourcePath = "static/font/NotoSansJP-Bold.otf";
