@@ -73,7 +73,9 @@ public class WordCloudApplication implements CommandLineRunner {
 //        System.getenv().entrySet().stream().forEach(System.out::println);
         Resource resource = resourceLoader.getResource("classpath:"+"static/font/fontconfig.properties.template");
         File f = new File("/tmp/fontconfig.properties");
-        Files.copy(resource.getInputStream(), f.toPath());
+        if (f.exists()) {
+            Files.copy(resource.getInputStream(), f.toPath());
+        }
 
         //        Properties hoge = System.getProperties();
 //        hoge.keySet().stream().forEach(System.out::println);
