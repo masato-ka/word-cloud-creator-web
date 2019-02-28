@@ -133,5 +133,5 @@ filename.AR_PL_ZenKai_Uni=$JRE_LIB_FONTS/ukai.ttf
 filename.Baekmuk_Dotum=$JRE_LIB_FONTS/dotum.ttf
 filename.Baekmuk_Batang=$JRE_LIB_FONTS/batang.ttf
 
-finename.Noto_Sans=/tmp/NotoSansJP-Regular.otf
+filename.Noto_Sans=/tmp/NotoSansJP-Regular.otf
 filename.Noto_Sans_Bold=/tmp/NotoSansJP-Bold.otf
