@@ -1,4 +1,4 @@
-# 
+#
 # Copyright 2007 Sun Microsystems, Inc.  All Rights Reserved.
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
 #
@@ -29,76 +29,76 @@ version=1
 
 # Component Font Mappings
 dialog.plain.latin-1=DejaVu Sans
-dialog.plain.japanese-x0208=Kochi Gothic
+dialog.plain.japanese-x0208=Noto Sans
 dialog.plain.korean=Baekmuk Dotum
 dialog.bold.latin-1=DejaVu Sans Bold
-dialog.bold.japanese-x0208=Kochi Gothic
+dialog.bold.japanese-x0208=Noto Sans
 dialog.bold.korean=Baekmuk Dotum
 dialog.italic.latin-1=DejaVu Sans Oblique
-dialog.italic.japanese-x0208=Kochi Gothic
+dialog.italic.japanese-x0208=Noto Sans
 dialog.italic.korean=Baekmuk Dotum
 dialog.bolditalic.latin-1=DejaVu Sans Bold Oblique
-dialog.bolditalic.japanese-x0208=Kochi Gothic
+dialog.bolditalic.japanese-x0208=Noto Sans
 dialog.bolditalic.korean=Baekmuk Dotum
 
 
 
 sansserif.plain.latin-1=DejaVu Sans
-sansserif.plain.japanese-x0208=Kochi Gothic
+sansserif.plain.japanese-x0208=Noto Sans
 sansserif.plain.korean=Baekmuk Dotum
 sansserif.bold.latin-1=DejaVu Sans Bold
-sansserif.bold.japanese-x0208=Kochi Gothic
+sansserif.bold.japanese-x0208=Noto Sans
 sansserif.bold.korean=Baekmuk Dotum
 sansserif.italic.latin-1=DejaVu Sans Oblique
-sansserif.italic.japanese-x0208=Kochi Gothic
+sansserif.italic.japanese-x0208=Noto Sans
 sansserif.italic.korean=Baekmuk Dotum
 sansserif.bolditalic.latin-1=DejaVu Sans Bold Oblique
-sansserif.bolditalic.japanese-x0208=Kochi Gothic
+sansserif.bolditalic.japanese-x0208=Noto Sans
 sansserif.bolditalic.korean=Baekmuk Dotum
 
 
 
 serif.plain.latin-1=DejaVu Serif
-serif.plain.japanese-x0208=Kochi Mincho
+serif.plain.japanese-x0208=Noto Sans
 serif.plain.korean=Baekmuk Batang
 serif.bold.latin-1=DejaVu Serif Bold
-serif.bold.japanese-x0208=Kochi Mincho
+serif.bold.japanese-x0208=Noto Sans
 serif.bold.korean=Baekmuk Batang
 serif.italic.latin-1=DejaVu Serif Oblique
-serif.italic.japanese-x0208=Kochi Mincho
+serif.italic.japanese-x0208=Noto Sans
 serif.italic.korean=Baekmuk Batang
 serif.bolditalic.latin-1=DejaVu Serif Bold Oblique
-serif.bolditalic.japanese-x0208=Kochi Mincho
+serif.bolditalic.japanese-x0208=Noto Sans
 serif.bolditalic.korean=Baekmuk Batang
 
 
 
 monospaced.plain.latin-1=DejaVu Sans Mono
-monospaced.plain.japanese-x0208=Kochi Gothic
+monospaced.plain.japanese-x0208=Noto Sans
 monospaced.plain.korean=Baekmuk Dotum
 monospaced.bold.latin-1=DejaVu Sans Mono Bold
-monospaced.bold.japanese-x0208=Kochi Gothic
+monospaced.bold.japanese-x0208=Noto Sans
 monospaced.bold.korean=Baekmuk Dotum
 monospaced.italic.latin-1=DejaVu Sans Mono Oblique
-monospaced.italic.japanese-x0208=Kochi Gothic
+monospaced.italic.japanese-x0208=Noto Sans
 monospaced.italic.korean=Baekmuk Dotum
 monospaced.bolditalic.latin-1=DejaVu Sans Mono Bold Oblique
-monospaced.bolditalic.japanese-x0208=Kochi Gothic
+monospaced.bolditalic.japanese-x0208=Noto Sans
 monospaced.bolditalic.korean=Baekmuk Dotum
 
 
 
 dialoginput.plain.latin-1=DejaVu Sans Mono
-dialoginput.plain.japanese-x0208=Kochi Gothic
+dialoginput.plain.japanese-x0208=Noto Sans
 dialoginput.plain.korean=Baekmuk Dotum
 dialoginput.bold.latin-1=DejaVu Sans Mono Bold
-dialoginput.bold.japanese-x0208=Kochi Gothic
+dialoginput.bold.japanese-x0208=Noto Sans
 dialoginput.bold.korean=Baekmuk Dotum
 dialoginput.italic.latin-1=DejaVu Sans Mono Oblique
-dialoginput.italic.japanese-x0208=Kochi Gothic
+dialoginput.italic.japanese-x0208=Noto Sans
 dialoginput.italic.korean=Baekmuk Dotum
 dialoginput.bolditalic.latin-1=DejaVu Sans Mono Bold Oblique
-dialoginput.bolditalic.japanese-x0208=Kochi Gothic
+dialoginput.bolditalic.japanese-x0208=Noto Sans
 dialoginput.bolditalic.korean=Baekmuk Dotum
 
 
@@ -132,3 +132,4 @@ filename.Kochi_Mincho=$JRE_LIB_FONTS/kochi-mincho-subst.ttf
 filename.AR_PL_ZenKai_Uni=$JRE_LIB_FONTS/ukai.ttf
 filename.Baekmuk_Dotum=$JRE_LIB_FONTS/dotum.ttf
 filename.Baekmuk_Batang=$JRE_LIB_FONTS/batang.ttf
+filename.Noto_Sans=/tmp/NotoSansJP-Bold.otf

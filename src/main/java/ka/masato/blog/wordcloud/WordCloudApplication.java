@@ -71,11 +71,14 @@ public class WordCloudApplication implements CommandLineRunner {
 //            logger.info("Exist!");
 //        }else{logger.info("No!");}
 //        System.getenv().entrySet().stream().forEach(System.out::println);
-        Resource resource = resourceLoader.getResource("classpath:"+"static/font/fontconfig.properties.template");
-        File f = new File("/tmp/fontconfig.properties");
-        if (f.exists()) {
+        Resource fontFileResource = resourceLoader.getResource("classoath:"+"static/font/NotoSansJP-Bold.otf");
+        Resource fontPropertiesResource = resourceLoader.getResource("classpath:"+"static/font/fontconfig.properties.template");
+        File fontFile = new File("/tmp/NotoSansJP-Bold.otf");
+        File fontPropertiesFile = new File("/tmp/fontconfig.properties");
+        if (fontPropertiesFile.exists()) {
         }else{
-            Files.copy(resource.getInputStream(), f.toPath());
+            Files.copy(fontFileResource.getInputStream(), fontFile.toPath());
+            Files.copy(fontPropertiesResource.getInputStream(), fontPropertiesFile.toPath());
         }
 
         //        Properties hoge = System.getProperties();
