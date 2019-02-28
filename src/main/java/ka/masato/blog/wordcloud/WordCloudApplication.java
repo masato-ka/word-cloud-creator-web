@@ -74,6 +74,7 @@ public class WordCloudApplication implements CommandLineRunner {
         Resource resource = resourceLoader.getResource("classpath:"+"static/font/fontconfig.properties.template");
         File f = new File("/tmp/fontconfig.properties");
         if (f.exists()) {
+        }else{
             Files.copy(resource.getInputStream(), f.toPath());
         }
 
