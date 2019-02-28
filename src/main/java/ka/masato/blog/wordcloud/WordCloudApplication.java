@@ -58,13 +58,13 @@ public class WordCloudApplication implements CommandLineRunner {
         String fontFilePath = "/tmp" + File.pathSeparator + "NotoSansJP-Regular.otf";
         String fontBoldFilePath = "/tmp"+File.pathSeparator+"NotoSansJP-Bold.otf";
 
-        String fontFileResourcePath = "static"+File.pathSeparator+"font"+File.pathSeparator+"NotoSansJP-Regular.otf";
-        //String fontBoldFileResourcePath = "static"+File.pathSeparator+"font"+File.pathSeparator+"NotoSansJP-Bold.otf";
-        String fontPropertiesResourcePath = "static"+File.pathSeparator+"font"+File.pathSeparator+"fontconfig.properties.template";
+        String fontFileResourcePath = "static/font/NotoSansJP-Regular.otf";
+        String fontBoldFileResourcePath = "static/font/NotoSansJP-Bold.otf";
+        String fontPropertiesResourcePath = "static/font/fontconfig.properties.template";
 
 
         Resource fontFileResource = resourceLoader.getResource("classpath:" + fontFileResourcePath);
-        //Resource fontFileBoldResource = resourceLoader.getResource("classpath:" + fontBoldFileResourcePath);
+        Resource fontFileBoldResource = resourceLoader.getResource("classpath:" + fontBoldFileResourcePath);
         Resource fontPropertiesResource = resourceLoader.getResource("classpath:"+fontPropertiesResourcePath);
 
         File fontFile = new File(fontFilePath);
@@ -73,7 +73,7 @@ public class WordCloudApplication implements CommandLineRunner {
 
         if (fontPropertiesFile.exists()) {
         }else{
-            //Files.copy(fontFileBoldResource.getInputStream(), fontBoldFile.toPath());
+            Files.copy(fontFileBoldResource.getInputStream(), fontBoldFile.toPath());
             Files.copy(fontFileResource.getInputStream(), fontFile.toPath());
             Files.copy(fontPropertiesResource.getInputStream(), fontPropertiesFile.toPath());
 
