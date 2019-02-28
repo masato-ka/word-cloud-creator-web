@@ -71,7 +71,7 @@ public class WordCloudApplication implements CommandLineRunner {
 //            logger.info("Exist!");
 //        }else{logger.info("No!");}
 //        System.getenv().entrySet().stream().forEach(System.out::println);
-        Resource fontFileResource = resourceLoader.getResource("classoath:"+"static/font/NotoSansJP-Bold.otf");
+        Resource fontFileResource = resourceLoader.getResource("classpath:"+"static/font/NotoSansJP-Bold.otf");
         Resource fontPropertiesResource = resourceLoader.getResource("classpath:"+"static/font/fontconfig.properties.template");
         File fontFile = new File("/tmp/NotoSansJP-Bold.otf");
         File fontPropertiesFile = new File("/tmp/fontconfig.properties");
