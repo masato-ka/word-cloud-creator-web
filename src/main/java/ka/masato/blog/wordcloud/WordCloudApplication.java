@@ -53,50 +53,46 @@ public class WordCloudApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        logger.info(Locale.getDefault().getLanguage());
-//        logger.info(Locale.getDefault().getDisplayLanguage());
-//        Locale.setDefault(Locale.JAPANESE);
-//        logger.info(Locale.getDefault().getLanguage());
-//        logger.info(Locale.getDefault().getDisplayLanguage());
-//        Map<String, String> env = System.getenv();
-//        String fontPath = System.getProperty("java.home")
-//                + File.pathSeparator + "lib"
-//                + File.pathSeparator + "fonts";
-//        if(new File(fontPath).exists()){
-//            Arrays.stream(new File(fontPath).list()).forEach(System.out::println);
-//        }
-//        logger.info(env.get("JRE_LIB_FONTS") + "/" + "kochi-gothic-subst.ttf");
-//        File font = new File(env.get("JRE_LIB_FONTS") + "/" + "kochi-gothic-subst.ttf");
-//        if (font.exists()) {
-//            logger.info("Exist!");
-//        }else{logger.info("No!");}
-//        System.getenv().entrySet().stream().forEach(System.out::println);
-        Resource fontFileResource = resourceLoader.getResource("classpath:"+"static/font/NotoSansJP-Bold.otf");
-        Resource fontPropertiesResource = resourceLoader.getResource("classpath:"+"static/font/fontconfig.properties.template");
-        File fontFile = new File("/tmp/NotoSansJP-Bold.otf");
-        File fontPropertiesFile = new File("/tmp/fontconfig.properties");
+
+        String fontPropertiesFilePath = "/tmp"+File.pathSeparator+"fontconfig.properties";
+        String fontFilePath = "/tmp" + File.pathSeparator + "NotoSansJP-Regular.otf";
+        String fontBoldFilePath = "/tmp"+File.pathSeparator+"NotoSansJP-Bold.otf";
+
+        String fontFileResourcePath = "static"+File.pathSeparator+"font"+File.pathSeparator+"NotoSansJP-Regular.otf";
+        String fontBoldFileResourcePath = "static"+File.pathSeparator+"font"+File.pathSeparator+"NotoSansJP-Bold.otf";
+        String fontPropertiesResourcePath = "static"+File.pathSeparator+"font"+File.pathSeparator+"fontconfig.properties.template";
+
+
+        Resource fontFileResource = resourceLoader.getResource("classpath:" + fontFileResourcePath);
+        Resource fontFileBoldResource = resourceLoader.getResource("classpath:" + fontBoldFileResourcePath);
+        Resource fontPropertiesResource = resourceLoader.getResource("classpath:"+fontPropertiesResourcePath);
+
+        File fontFile = new File(fontFilePath);
+        File fontBoldFile = new File(fontBoldFilePath);
+        File fontPropertiesFile = new File(fontPropertiesFilePath);
+
         if (fontPropertiesFile.exists()) {
         }else{
+            Files.copy(fontFileBoldResource.getInputStream(), fontBoldFile.toPath());
             Files.copy(fontFileResource.getInputStream(), fontFile.toPath());
             Files.copy(fontPropertiesResource.getInputStream(), fontPropertiesFile.toPath());
-        }
-
-        //        Properties hoge = System.getProperties();
-//        hoge.keySet().stream().forEach(System.out::println);
-//        logger.info("USER.DIR:" + hoge.getProperty("user.dir"));
-//        String fontConfig = System.getProperty("java.home")
-//                + File.separator + "lib"
-//                + File.separator + "fontconfig.Prodimage.properties";
-        String fontConfig = "/tmp" + File.separator + "fontconfig.properties";
-        logger.info(fontConfig);
-        if (new File(fontConfig).exists()){
-            System.setProperty("sun.awt.fontconfig", fontConfig);
-//            Files.lines(Paths.get(fontConfig), StandardCharsets.UTF_8)
-//                    .forEach(System.out::println);
-        } else {
-            logger.warn("can not find fontconfig.");
 
         }
+
+        System.setProperty("sun.awt.fontconfig", fontFilePath);
     }
+
+
+//    private void deployFontSettings(){
+//        String resourcePathPrefix = "static" + File.pathSeparator + "font" + File.pathSeparator;
+//        String filePathPrefix = "/tmp" + File.pathSeparator;
+//        String[] fileNames = {"fontconfig.properties", "NotoSansJP-Regular.otf", "NotoSansJP-Bold.otf"};
+//        Arrays.stream(fileNames)
+//                .map(fileName -> resourceLoader.getResource("classpath:" + resourcePathPrefix + fileName))
+//                .map(resource -> Files.copy(resource.getInputStream(),
+//                        new File(filePathPrefix + resource.getFilename())));
+//
+//    }
+
 }
 
