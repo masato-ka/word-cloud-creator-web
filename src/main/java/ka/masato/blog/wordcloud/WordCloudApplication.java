@@ -53,46 +53,23 @@ public class WordCloudApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
-        String fontPropertiesFilePath = "/tmp/fontconfig.properties";
-        String fontFilePath = "/tmp/NotoSansJP-Regular.otf";
-        String fontBoldFilePath = "/tmp/NotoSansJP-Bold.otf";
-
-        String fontFileResourcePath = "static/font/NotoSansJP-Regular.otf";
-        String fontBoldFileResourcePath = "static/font/NotoSansJP-Bold.otf";
-        String fontPropertiesResourcePath = "static/font/fontconfig.properties.template";
-
-
-        Resource fontFileResource = resourceLoader.getResource("classpath:" + fontFileResourcePath);
-        Resource fontFileBoldResource = resourceLoader.getResource("classpath:" + fontBoldFileResourcePath);
-        Resource fontPropertiesResource = resourceLoader.getResource("classpath:"+fontPropertiesResourcePath);
-
-        File fontFile = new File(fontFilePath);
-        File fontBoldFile = new File(fontBoldFilePath);
-        File fontPropertiesFile = new File(fontPropertiesFilePath);
-
+        Resource fontFileResource = resourceLoader.getResource("classpath:"+"static/font/NotoSansJP-Bold.otf");
+        Resource fontPropertiesResource = resourceLoader.getResource("classpath:"+"static/font/fontconfig.properties.template");
+        File fontFile = new File("/tmp/NotoSansJP-Bold.otf");
+        File fontPropertiesFile = new File("/tmp/fontconfig.properties");
         if (fontPropertiesFile.exists()) {
         }else{
-            Files.copy(fontFileBoldResource.getInputStream(), fontBoldFile.toPath());
             Files.copy(fontFileResource.getInputStream(), fontFile.toPath());
             Files.copy(fontPropertiesResource.getInputStream(), fontPropertiesFile.toPath());
+        }
+        String fontConfig = "/tmp" + File.separator + "fontconfig.properties";
+        logger.info(fontConfig);
+        if (new File(fontConfig).exists()){
+            System.setProperty("sun.awt.fontconfig", fontConfig);
+        } else {
+            logger.warn("can not find fontconfig.");
 
         }
-
-        System.setProperty("sun.awt.fontconfig", fontFilePath);
     }
-
-
-//    private void deployFontSettings(){
-//        String resourcePathPrefix = "static" + File.pathSeparator + "font" + File.pathSeparator;
-//        String filePathPrefix = "/tmp" + File.pathSeparator;
-//        String[] fileNames = {"fontconfig.properties", "NotoSansJP-Regular.otf", "NotoSansJP-Bold.otf"};
-//        Arrays.stream(fileNames)
-//                .map(fileName -> resourceLoader.getResource("classpath:" + resourcePathPrefix + fileName))
-//                .map(resource -> Files.copy(resource.getInputStream(),
-//                        new File(filePathPrefix + resource.getFilename())));
-//
-//    }
-
 }
 
